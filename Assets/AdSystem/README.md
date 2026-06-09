@@ -61,3 +61,12 @@ Analytics.LogEvent("level_complete", 7);
 ```
 
 ედიტორში ანალიტიკა no-op-ია (მონაცემებს არ ბინძურებს).
+
+## iOS — App Tracking Transparency
+
+iOS 14+-ზე `SdkManager` ავტომატურად აჩვენებს ATT permission prompt-ს რეკლამის
+ინიციალიზაციამდე, ხოლო build-ის დროს `NSUserTrackingUsageDescription` თვითონ
+ეწერება `Info.plist`-ში — **ხელით არაფერი არ სჭირდება.**
+
+prompt-ის ტექსტის შესაცვლელად: `Assets/AdSystem/Editor/IOSPostProcessor.cs` →
+`TrackingUsageDescription`.

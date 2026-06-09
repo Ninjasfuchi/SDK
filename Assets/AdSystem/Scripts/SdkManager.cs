@@ -35,7 +35,9 @@ namespace AdSystem
 
         private void Start()
         {
-            InitializeSDK();
+            // iOS: ask for tracking permission first; ads/analytics initialize once
+            // the user responds (no-op on Android/Editor, continues immediately).
+            AppTracking.Request(_ => InitializeSDK());
         }
 
         private void InitializeSDK()
