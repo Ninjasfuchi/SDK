@@ -92,7 +92,9 @@ namespace AdSystem
 
         private void EnsureRuntimeObject()
         {
+#pragma warning disable CS0618 // FindObjectOfType: kept for compatibility with older Unity versions
             if (UnityEngine.Object.FindObjectOfType(gaType) != null) return;
+#pragma warning restore CS0618
 
             var go = new GameObject("GameAnalytics");
             go.AddComponent(gaType);
