@@ -13,22 +13,17 @@ namespace AdSystem
         [SerializeField] private string rewardedAndroid = "ANDROID_REWARDED_ID_HERE";
         [SerializeField] private string rewardedIOS = "IOS_REWARDED_ID_HERE";
 
-        public string InterstitialAdUnitId =>
-#if UNITY_ANDROID
-            interstitialAndroid;
-#elif UNITY_IOS
-            interstitialIOS;
-#else
-            interstitialAndroid;
-#endif
+        public string InterstitialAdUnitId => Platform(interstitialAndroid, interstitialIOS);
 
-        public string RewardedAdUnitId =>
-#if UNITY_ANDROID
-            rewardedAndroid;
-#elif UNITY_IOS
-            rewardedIOS;
+        public string RewardedAdUnitId => Platform(rewardedAndroid, rewardedIOS);
+
+        private static string Platform(string android, string ios)
+        {
+#if UNITY_IOS
+            return ios;
 #else
-            rewardedAndroid;
+            return android;
 #endif
+        }
     }
 }
