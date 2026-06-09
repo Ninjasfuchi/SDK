@@ -2,7 +2,8 @@
     "name": "AdSystem",
     "rootNamespace": "AdSystem",
     "references": [
-        "MaxSdk.Scripts"
+        "MaxSdk.Scripts",
+        "GameAnalyticsSDK"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

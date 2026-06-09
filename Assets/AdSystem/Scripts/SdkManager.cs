@@ -18,6 +18,8 @@ namespace AdSystem
         public event Action OnRewardedClosed;
         public event Action OnUserRewarded;
 
+        private IAnalyticsService analytics;
+
         private int interstitialRetryAttempt;
         private int rewardedRetryAttempt;
 
@@ -44,9 +46,22 @@ namespace AdSystem
                 return;
             }
 
+            InitializeAnalytics();
+
             MaxSdkCallbacks.OnSdkInitializedEvent += OnSdkInitialized;
             SetupAdCallbacks();
             MaxSdk.InitializeSdk();
+        }
+
+        private void InitializeAnalytics()
+        {
+#if UNITY_EDITOR
+            analytics = new NullAnalyticsService();
+#else
+            analytics = new GameAnalyticsProvider();
+#endif
+            analytics.Initialize();
+            Analytics.Register(analytics);
         }
 
         private void OnSdkInitialized(MaxSdkBase.SdkConfiguration sdkConfiguration)
@@ -121,6 +136,7 @@ namespace AdSystem
 
         private void OnAdReceivedRewardCallback(string adUnitId, MaxSdkBase.Reward reward, MaxSdkBase.AdInfo adInfo)
         {
+            Analytics.LogAdEvent(AdEventType.RewardReceived, AdType.Rewarded, adUnitId);
             OnUserRewarded?.Invoke();
         }
         #endregion
@@ -132,6 +148,7 @@ namespace AdSystem
             if (IsInterstitialReady())
             {
                 MaxSdk.ShowInterstitial(config.InterstitialAdUnitId);
+                Analytics.LogAdEvent(AdEventType.Show, AdType.Interstitial, config.InterstitialAdUnitId);
             }
             else
             {
@@ -149,6 +166,7 @@ namespace AdSystem
             if (IsRewardedReady())
             {
                 MaxSdk.ShowRewardedAd(config.RewardedAdUnitId);
+                Analytics.LogAdEvent(AdEventType.Show, AdType.Rewarded, config.RewardedAdUnitId);
             }
             else
             {
@@ -219,6 +237,7 @@ namespace AdSystem
         private void OnDestroy()
         {
             AdServices.Unregister(this);
+            Analytics.Unregister(analytics);
 
             if (!Application.isPlaying) return;
 

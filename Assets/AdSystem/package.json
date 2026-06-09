@@ -1,14 +1,16 @@
 {
   "name": "com.pelamushi.adsystem",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "Ad System",
-  "description": "Drop-in AppLovin MAX wrapper: interstitial + rewarded ads behind a clean IAdService locator, with auto-retry and editor test ads. Requires the AppLovin MAX SDK to be present in the project.",
+  "description": "Drop-in AppLovin MAX wrapper: interstitial + rewarded ads behind a clean IAdService locator, with auto-retry, editor test ads, and built-in GameAnalytics tracking (retention/DAU + ad events). Requires the AppLovin MAX and GameAnalytics SDKs to be present in the project.",
   "unity": "2021.3",
   "keywords": [
     "ads",
     "applovin",
     "max",
-    "monetization"
+    "monetization",
+    "analytics",
+    "gameanalytics"
   ],
   "author": {
     "name": "Pelamushi"
