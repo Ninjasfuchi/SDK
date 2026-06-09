@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AdSystem.Scripts
+namespace AdSystem
 {
     public class SdkManager : MonoBehaviour, IAdService
     {

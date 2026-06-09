@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdSystem.Scripts
+namespace AdSystem
 {
     public interface IAdService
     {

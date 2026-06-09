@@ -1,4 +1,4 @@
-﻿namespace AdSystem.Scripts
+﻿namespace AdSystem
 {
     public static class AdServices
     {

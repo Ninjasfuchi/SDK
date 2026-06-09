@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AdSystem.Scripts
+namespace AdSystem
 {
     [CreateAssetMenu(fileName = "AdConfig", menuName = "AdSystem/Ad Config")]
     public class AdConfig : ScriptableObject
