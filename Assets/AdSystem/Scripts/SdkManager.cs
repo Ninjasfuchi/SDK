@@ -28,6 +28,7 @@ namespace AdSystem.Scripts
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            AdServices.Register(this);
         }
 
         private void Start()
@@ -217,6 +218,8 @@ namespace AdSystem.Scripts
 
         private void OnDestroy()
         {
+            AdServices.Unregister(this);
+
             if (!Application.isPlaying) return;
 
             if (interstitialRetryCoroutine != null) StopCoroutine(interstitialRetryCoroutine);
@@ -238,4 +241,5 @@ namespace AdSystem.Scripts
             MaxSdkCallbacks.Rewarded.OnAdReceivedRewardEvent -= OnAdReceivedRewardCallback;
         }
     }
+    
 }

@@ -6,12 +6,12 @@ namespace AdSystem.Scripts
     public class AdConfig : ScriptableObject
     {
         [Header("Interstitial Ad Unit IDs")]
-         public string interstitialAndroid = "ANDROID_INT_ID_HERE";
-         public string interstitialIOS = "IOS_INT_ID_HERE";
+         [SerializeField] private string interstitialAndroid = "ANDROID_INT_ID_HERE";
+         [SerializeField] private string interstitialIOS = "IOS_INT_ID_HERE";
 
         [Header("Rewarded Ad Unit IDs")]
-         public string rewardedAndroid = "ANDROID_REWARDED_ID_HERE";
-         public string rewardedIOS = "IOS_REWARDED_ID_HERE";
+        [SerializeField] private string rewardedAndroid = "ANDROID_REWARDED_ID_HERE";
+        [SerializeField] private string rewardedIOS = "IOS_REWARDED_ID_HERE";
 
         public string InterstitialAdUnitId =>
 #if UNITY_ANDROID
